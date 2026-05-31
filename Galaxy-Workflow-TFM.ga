@@ -1,0 +1,1131 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "comments": [],
+    "format-version": "0.1",
+    "name": "Genome def",
+    "report": {
+        "markdown": "\n# Workflow Execution Report\n\n## Workflow Inputs\n```galaxy\ninvocation_inputs()\n```\n\n## Workflow Outputs\n```galaxy\ninvocation_outputs()\n```\n\n## Workflow\n```galaxy\nworkflow_display()\n```\n"
+    },
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Assemblys de Genomas"
+                }
+            ],
+            "label": "Assemblys de Genomas",
+            "name": "Input dataset collection",
+            "outputs": [],
+            "position": {
+                "left": 7.672623160069142e-05,
+                "top": 877.658388349226
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"tag\": null, \"collection_type\": \"list\", \"fields\": null, \"column_definitions\": null}",
+            "tool_version": null,
+            "type": "data_collection_input",
+            "uuid": "e472efab-7687-4a8a-8e4b-30b7fb6c9a22",
+            "when": null,
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "FungiODB"
+                }
+            ],
+            "label": "FungiODB",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 0,
+                "top": 1015.8989417359095
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"tag\": null}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "2b18002e-5c1b-4453-8827-0d18068eded1",
+            "when": null,
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/genouest/braker3/braker3/3.0.8+galaxy2",
+            "errors": null,
+            "id": 2,
+            "input_connections": {
+                "evidences|prot_seq": {
+                    "id": 1,
+                    "output_name": "output"
+                },
+                "genome": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool BRAKER3",
+                    "name": "advanced"
+                },
+                {
+                    "description": "runtime parameter for tool BRAKER3",
+                    "name": "advanced"
+                },
+                {
+                    "description": "runtime parameter for tool BRAKER3",
+                    "name": "evidences"
+                },
+                {
+                    "description": "runtime parameter for tool BRAKER3",
+                    "name": "evidences"
+                }
+            ],
+            "label": "Anotaci\u00f3n",
+            "name": "BRAKER3",
+            "outputs": [
+                {
+                    "name": "output_gff",
+                    "type": "gff3"
+                }
+            ],
+            "position": {
+                "left": 389.8182681192625,
+                "top": 460.2920356539839
+            },
+            "post_job_actions": {
+                "RenameDatasetActionoutput_gff": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output_gff"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/genouest/braker3/braker3/3.0.8+galaxy2",
+            "tool_shed_repository": {
+                "changeset_revision": "0be6820e3268",
+                "name": "braker3",
+                "owner": "genouest",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"advanced\": {\"filterOutShort\": false, \"eval\": {\"__class__\": \"RuntimeValue\"}, \"eval_pseudo\": {\"__class__\": \"RuntimeValue\"}, \"alternatives_from_evidence\": true}, \"augustus\": {\"crf\": true, \"rounds\": \"5\", \"AUGUSTUS_ab_initio\": false, \"keepCrf\": false}, \"dev\": {\"splice_sites\": null, \"min_contig\": null, \"gc_probability\": \"0.001\", \"gm_max_intergenic\": null, \"downsampling_lambda\": \"2\"}, \"evidences\": {\"bam\": {\"__class__\": \"RuntimeValue\"}, \"prot_seq\": {\"__class__\": \"ConnectedValue\"}}, \"genemark\": {\"fungus\": true}, \"genome\": {\"__class__\": \"ConnectedValue\"}, \"output_format\": \"gff3\", \"softmasking\": true, \"species\": null, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "3.0.8+galaxy2",
+            "type": "tool",
+            "uuid": "293b7817-5214-4c4e-afb2-a052bec4347f",
+            "when": null,
+            "workflow_outputs": [
+                {
+                    "label": "Anotaci\u00f3n_gff",
+                    "output_name": "output_gff",
+                    "uuid": "9350da4e-b5e4-485d-aa9c-27a39b289699"
+                }
+            ]
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/galaxyp/regex_find_replace/regex1/1.0.3",
+            "errors": null,
+            "id": 3,
+            "input_connections": {
+                "input": {
+                    "id": 2,
+                    "output_name": "output_gff"
+                }
+            },
+            "inputs": [],
+            "label": "Sin _ en el genoma",
+            "name": "Regex Find And Replace",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 594.7900403130864,
+                "top": 915.4001761978606
+            },
+            "post_job_actions": {
+                "RenameDatasetActionout_file1": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "out_file1"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/galaxyp/regex_find_replace/regex1/1.0.3",
+            "tool_shed_repository": {
+                "changeset_revision": "503bcd6ebe4b",
+                "name": "regex_find_replace",
+                "owner": "galaxyp",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"checks\": [{\"__index__\": 0, \"pattern\": \"_[^\\\\t]+\", \"replacement\": \"\"}], \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "1.0.3",
+            "type": "tool",
+            "uuid": "8292755b-9adb-4624-8b1e-2c2cea29b45d",
+            "when": null,
+            "workflow_outputs": [
+                {
+                    "label": "Archivo listo para gff to read",
+                    "output_name": "out_file1",
+                    "uuid": "010a5367-7a75-4e73-899c-b1360831cba1"
+                }
+            ]
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/gffread/gffread/2.2.1.4+galaxy0",
+            "errors": null,
+            "id": 4,
+            "input_connections": {
+                "input": {
+                    "id": 3,
+                    "output_name": "out_file1"
+                },
+                "reference_genome|genome_fasta": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool gffread",
+                    "name": "chr_replace"
+                },
+                {
+                    "description": "runtime parameter for tool gffread",
+                    "name": "reference_genome"
+                }
+            ],
+            "label": "Obtenci\u00f3n archivo protein.faa",
+            "name": "gffread",
+            "outputs": [
+                {
+                    "name": "output_gff",
+                    "type": "gff3"
+                },
+                {
+                    "name": "output_pep",
+                    "type": "fasta"
+                },
+                {
+                    "name": "output_dupinfo",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "left": 450.7335565443928,
+                "top": 1228.521526013041
+            },
+            "post_job_actions": {
+                "RenameDatasetActionoutput_gff": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output_gff"
+                },
+                "RenameDatasetActionoutput_pep": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output_pep"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/gffread/gffread/2.2.1.4+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "3e436657dcd0",
+                "name": "gffread",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"chr_replace\": {\"__class__\": \"RuntimeValue\"}, \"decode_url\": false, \"expose\": false, \"filtering\": null, \"full_gff_attribute_preservation\": false, \"gffs\": {\"gff_fmt\": \"gff\", \"__current_case__\": 1, \"ensembl\": false, \"tname\": \"\"}, \"input\": {\"__class__\": \"ConnectedValue\"}, \"maxintron\": null, \"merging\": {\"merge_sel\": \"merge\", \"__current_case__\": 1, \"merge_cmd\": \"--merge\", \"merge_options\": [\"-K\"]}, \"reference_genome\": {\"source\": \"history\", \"__current_case__\": 2, \"genome_fasta\": {\"__class__\": \"ConnectedValue\"}, \"ref_filtering\": null, \"fa_outputs\": [\"-y pep.fa\", \"-S\"]}, \"region\": {\"region_filter\": \"none\", \"__current_case__\": 0}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "2.2.1.4+galaxy0",
+            "type": "tool",
+            "uuid": "6d59cbac-07e1-4fc0-8d0f-1674b7849cde",
+            "when": null,
+            "workflow_outputs": [
+                {
+                    "label": "Proteinas",
+                    "output_name": "output_pep",
+                    "uuid": "7a041622-bcae-4b65-b429-eeb4d0ae2256"
+                },
+                {
+                    "label": "GFF",
+                    "output_name": "output_gff",
+                    "uuid": "c0048f2c-4314-42a8-88d7-a9f8e83e187d"
+                },
+                {
+                    "label": "output_dupinfo",
+                    "output_name": "output_dupinfo",
+                    "uuid": "a15509a8-fa67-4f34-b485-e9a07dd74020"
+                }
+            ]
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/mvdbeek/add_input_name_as_column/addName/0.2.0",
+            "errors": null,
+            "id": 5,
+            "input_connections": {
+                "input": {
+                    "id": 4,
+                    "output_name": "output_gff"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Add input name as column",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 879.2835627328873,
+                "top": 1081.0635467277407
+            },
+            "post_job_actions": {
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/mvdbeek/add_input_name_as_column/addName/0.2.0",
+            "tool_shed_repository": {
+                "changeset_revision": "3284b72eef56",
+                "name": "add_input_name_as_column",
+                "owner": "mvdbeek",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"header\": {\"contains_header\": \"no\", \"__current_case__\": 1}, \"input\": {\"__class__\": \"ConnectedValue\"}, \"prepend\": false, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "0.2.0",
+            "type": "tool",
+            "uuid": "0762a681-9981-487e-b673-c6fed54f63f6",
+            "when": null,
+            "workflow_outputs": [
+                {
+                    "label": "Nombre Especie",
+                    "output_name": "output",
+                    "uuid": "4b7c919e-5947-4078-82e0-92f760a73058"
+                }
+            ]
+        },
+        "6": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/fasta_to_tabular/fasta2tab/1.1.1",
+            "errors": null,
+            "id": 6,
+            "input_connections": {
+                "input": {
+                    "id": 4,
+                    "output_name": "output_pep"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "FASTA-to-Tabular",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 641.582106840309,
+                "top": 1571.7586138976367
+            },
+            "post_job_actions": {
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/fasta_to_tabular/fasta2tab/1.1.1",
+            "tool_shed_repository": {
+                "changeset_revision": "e7ed3c310b74",
+                "name": "fasta_to_tabular",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"descr_columns\": \"1\", \"input\": {\"__class__\": \"ConnectedValue\"}, \"keep_first\": \"0\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "1.1.1",
+            "type": "tool",
+            "uuid": "d0d70024-4808-4bde-a8b5-d623656ed8b7",
+            "when": null,
+            "workflow_outputs": [
+                {
+                    "label": "Fasta en columna",
+                    "output_name": "output",
+                    "uuid": "20134dda-6b4c-4251-8964-ac2e3c4c47f4"
+                }
+            ]
+        },
+        "7": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_awk_tool/9.5+galaxy3",
+            "errors": null,
+            "id": 7,
+            "input_connections": {
+                "infile": {
+                    "id": 5,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Text reformatting",
+            "outputs": [
+                {
+                    "name": "outfile",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 1142.661664452447,
+                "top": 935.9493458389559
+            },
+            "post_job_actions": {
+                "RenameDatasetActionoutfile": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "outfile"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_awk_tool/9.5+galaxy3",
+            "tool_shed_repository": {
+                "changeset_revision": "ab83aa685821",
+                "name": "text_processing",
+                "owner": "bgruening",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"code\": \"BEGIN {FS=\\\"\\\\t\\\"; OFS=\\\"\\\\t\\\"}\\n/^#/ { \\n    sub(/\\\\t[^\\\\t]+$/, \\\"\\\", $0); \\n    print $0; \\n    next \\n}\\n{\\n    gsub(/(^|;)ID=/, \\\"&\\\" $10 \\\"_\\\", $9);\\n    gsub(/(^|;)Parent=/, \\\"&\\\" $10 \\\"_\\\", $9);\\n    gsub(/(^|;)geneID=/, \\\"&\\\" $10 \\\"_\\\", $9);\\n    print $1, $2, $3, $4, $5, $6, $7, $8, $9\\n}\", \"infile\": {\"__class__\": \"ConnectedValue\"}, \"variables\": [], \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "9.5+galaxy3",
+            "type": "tool",
+            "uuid": "009f16b4-3a39-4bb0-9bce-237f900d08be",
+            "when": null,
+            "workflow_outputs": [
+                {
+                    "label": "Formateo del gff",
+                    "output_name": "outfile",
+                    "uuid": "c6fe7d8f-52ee-460f-915b-c884ed2eca69"
+                }
+            ]
+        },
+        "8": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/mvdbeek/add_input_name_as_column/addName/0.2.0",
+            "errors": null,
+            "id": 8,
+            "input_connections": {
+                "input": {
+                    "id": 6,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Add input name as column",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 885.5730639375619,
+                "top": 1574.1339519446167
+            },
+            "post_job_actions": {
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/mvdbeek/add_input_name_as_column/addName/0.2.0",
+            "tool_shed_repository": {
+                "changeset_revision": "3284b72eef56",
+                "name": "add_input_name_as_column",
+                "owner": "mvdbeek",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"header\": {\"contains_header\": \"no\", \"__current_case__\": 1}, \"input\": {\"__class__\": \"ConnectedValue\"}, \"prepend\": false, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "0.2.0",
+            "type": "tool",
+            "uuid": "30cdee4e-b6f5-45d0-b66e-74ff9e1db1cd",
+            "when": null,
+            "workflow_outputs": [
+                {
+                    "label": "A\u00f1adir Especie",
+                    "output_name": "output",
+                    "uuid": "adf68b57-3f4f-43b0-917b-670f3fd948f5"
+                }
+            ]
+        },
+        "9": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/antismash/antismash/6.1.1+galaxy1",
+            "errors": null,
+            "id": 9,
+            "input_connections": {
+                "genefinding_gff3": {
+                    "id": 7,
+                    "output_name": "outfile"
+                },
+                "infile": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Antismash",
+                    "name": "sideload"
+                }
+            ],
+            "label": null,
+            "name": "Antismash",
+            "outputs": [
+                {
+                    "name": "html",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 1062.8549649970694,
+                "top": 515.53935049413
+            },
+            "post_job_actions": {
+                "RenameDatasetActionhtml": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "html"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/antismash/antismash/6.1.1+galaxy1",
+            "tool_shed_repository": {
+                "changeset_revision": "bc88856eddab",
+                "name": "antismash",
+                "owner": "bgruening",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"advanced_options\": {\"minlength\": \"1000\", \"hmmdetection_strictness\": \"relaxed\", \"cb_nclusters\": \"10\", \"cb_min_homology_scale\": \"0.0\", \"rre_cutoff\": \"25.0\", \"rre_minlength\": \"50\"}, \"asf\": true, \"cb_general\": false, \"cb_knownclusters\": true, \"cb_subclusters\": true, \"cc_mibig\": false, \"clusterhmmer\": false, \"cond_taxon\": {\"taxon\": \"bacteria\", \"__current_case__\": 0, \"genefinding_tool\": \"prodigal\", \"tigrfam\": false}, \"fullhmmer\": false, \"genefinding_gff3\": {\"__class__\": \"ConnectedValue\"}, \"infile\": {\"__class__\": \"ConnectedValue\"}, \"outputs\": \"html\", \"pfam2go\": true, \"rre\": true, \"sideload\": {\"file\": {\"__class__\": \"RuntimeValue\"}, \"format\": \"harmonize\"}, \"smcog_trees\": true, \"tta_threshold\": \"0.65\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "6.1.1+galaxy1",
+            "type": "tool",
+            "uuid": "68356073-099a-4141-9683-9c80538fc575",
+            "when": null,
+            "workflow_outputs": [
+                {
+                    "label": "html",
+                    "output_name": "html",
+                    "uuid": "42f60a7d-1929-41e2-9a3c-4616adfae08e"
+                }
+            ]
+        },
+        "10": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/tabular_to_fasta/tab2fasta/1.1.1",
+            "errors": null,
+            "id": 10,
+            "input_connections": {
+                "input": {
+                    "id": 8,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Tabular-to-FASTA",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "fasta"
+                }
+            ],
+            "position": {
+                "left": 1130.2289972726123,
+                "top": 1566.9988716279247
+            },
+            "post_job_actions": {
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/tabular_to_fasta/tab2fasta/1.1.1",
+            "tool_shed_repository": {
+                "changeset_revision": "0a7799698fe5",
+                "name": "tabular_to_fasta",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"input\": {\"__class__\": \"ConnectedValue\"}, \"seq_col\": \"2\", \"title_col\": [\"3\", \"1\"], \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "1.1.1",
+            "type": "tool",
+            "uuid": "38ffa4db-e6f5-4548-8634-a043554e7cb9",
+            "when": null,
+            "workflow_outputs": [
+                {
+                    "label": "Secuencias de proteinas",
+                    "output_name": "output",
+                    "uuid": "6f5981f1-7e56-4473-ac11-de4e8c52e918"
+                }
+            ]
+        },
+        "11": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/orthofinder_onlygroups/orthofinder_onlygroups/2.5.5+galaxy1",
+            "errors": null,
+            "id": 11,
+            "input_connections": {
+                "init|input_fasta": {
+                    "id": 10,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool OrthoFinder",
+                    "name": "init"
+                }
+            ],
+            "label": null,
+            "name": "OrthoFinder",
+            "outputs": [
+                {
+                    "name": "hogs",
+                    "type": "input"
+                },
+                {
+                    "name": "orthologues",
+                    "type": "input"
+                },
+                {
+                    "name": "orthologues_per_species",
+                    "type": "input"
+                },
+                {
+                    "name": "genetrees",
+                    "type": "input"
+                },
+                {
+                    "name": "resolved_genetrees",
+                    "type": "input"
+                },
+                {
+                    "name": "orthogroups1",
+                    "type": "txt"
+                },
+                {
+                    "name": "orthogroups2",
+                    "type": "tsv"
+                },
+                {
+                    "name": "unassigned_genes",
+                    "type": "tsv"
+                },
+                {
+                    "name": "species_tree",
+                    "type": "newick"
+                },
+                {
+                    "name": "species_tree_label",
+                    "type": "newick"
+                },
+                {
+                    "name": "duplications_per_orthogroup",
+                    "type": "tsv"
+                },
+                {
+                    "name": "duplications_per_species_tree_node",
+                    "type": "tsv"
+                },
+                {
+                    "name": "specs_overlap",
+                    "type": "tsv"
+                },
+                {
+                    "name": "orthologuesstats_many_to_many",
+                    "type": "tsv"
+                },
+                {
+                    "name": "orthologuesstats_one_to_many",
+                    "type": "tsv"
+                },
+                {
+                    "name": "orthologuesstats_many_to_one",
+                    "type": "tsv"
+                },
+                {
+                    "name": "orthologuesstats_total",
+                    "type": "tsv"
+                },
+                {
+                    "name": "stat_overall",
+                    "type": "tsv"
+                },
+                {
+                    "name": "stat_specs",
+                    "type": "tsv"
+                },
+                {
+                    "name": "species_tree_duplications",
+                    "type": "newick"
+                },
+                {
+                    "name": "duplications",
+                    "type": "tsv"
+                }
+            ],
+            "position": {
+                "left": 1527.9495532893623,
+                "top": 0
+            },
+            "post_job_actions": {
+                "RenameDatasetActionduplications": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "duplications"
+                },
+                "RenameDatasetActionduplications_per_orthogroup": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "duplications_per_orthogroup"
+                },
+                "RenameDatasetActionduplications_per_species_tree_node": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "duplications_per_species_tree_node"
+                },
+                "RenameDatasetActiongenetrees": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "genetrees"
+                },
+                "RenameDatasetActionhogs": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "hogs"
+                },
+                "RenameDatasetActionorthogroups1": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "orthogroups1"
+                },
+                "RenameDatasetActionorthogroups2": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "orthogroups2"
+                },
+                "RenameDatasetActionorthologues": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "orthologues"
+                },
+                "RenameDatasetActionorthologues_per_species": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "orthologues_per_species"
+                },
+                "RenameDatasetActionorthologuesstats_many_to_many": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "orthologuesstats_many_to_many"
+                },
+                "RenameDatasetActionorthologuesstats_many_to_one": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "orthologuesstats_many_to_one"
+                },
+                "RenameDatasetActionorthologuesstats_one_to_many": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "orthologuesstats_one_to_many"
+                },
+                "RenameDatasetActionorthologuesstats_total": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "orthologuesstats_total"
+                },
+                "RenameDatasetActionresolved_genetrees": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "resolved_genetrees"
+                },
+                "RenameDatasetActionspecies_tree": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "species_tree"
+                },
+                "RenameDatasetActionspecies_tree_duplications": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "species_tree_duplications"
+                },
+                "RenameDatasetActionspecies_tree_label": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "species_tree_label"
+                },
+                "RenameDatasetActionspecs_overlap": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "specs_overlap"
+                },
+                "RenameDatasetActionstat_overall": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "stat_overall"
+                },
+                "RenameDatasetActionstat_specs": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "stat_specs"
+                },
+                "RenameDatasetActionunassigned_genes": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "unassigned_genes"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/orthofinder_onlygroups/orthofinder_onlygroups/2.5.5+galaxy1",
+            "tool_shed_repository": {
+                "changeset_revision": "b6ec80429d54",
+                "name": "orthofinder_onlygroups",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"inflation\": \"1.5\", \"init\": {\"start\": \"fasta\", \"__current_case__\": 0, \"input_fasta\": {\"__class__\": \"ConnectedValue\"}, \"input_type\": \"\", \"search\": {\"search_program\": \"diamond\", \"__current_case__\": 1}}, \"trees\": {\"run_mode\": \"full\", \"__current_case__\": 0, \"tree_method\": {\"method\": \"dendroblast\", \"__current_case__\": 1}, \"output_selector\": [\"phylogenetic_hierarchical_orthogroups\", \"orthologues\", \"gene_trees\", \"species_tree\", \"species_tree_node_labels\", \"orthologuesstats_total\", \"specs_overlap\", \"stat_overall\", \"stat_specs\", \"orthologues_per_species\", \"speciestree_gene_duplication_0.5_support\", \"resolved_gene_trees\", \"duplications_per_orthogroup\", \"orthogroups_unassigned_genes\", \"orthogroups_legacy\", \"orthogroups\", \"orthologuesstats_many_to_one\", \"orthologuesstats_one_to_many\", \"orthologuesstats_many_to_many\", \"duplications_per_species_tree_node\", \"duplications\"]}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "2.5.5+galaxy1",
+            "type": "tool",
+            "uuid": "92fcc582-d7bd-4cd6-a625-58cfa7629d96",
+            "when": null,
+            "workflow_outputs": [
+                {
+                    "label": "duplications_per_species_tree_node",
+                    "output_name": "duplications_per_species_tree_node",
+                    "uuid": "5e41b395-4f46-4cab-8c31-5064626cbd25"
+                },
+                {
+                    "label": "orthologuesstats_one_to_many",
+                    "output_name": "orthologuesstats_one_to_many",
+                    "uuid": "b795b0e9-a5a3-4129-aa6a-7c841475491e"
+                },
+                {
+                    "label": "orthologuesstats_many_to_many",
+                    "output_name": "orthologuesstats_many_to_many",
+                    "uuid": "1d3fe8e4-fd6b-4873-88d5-356b3e53e3c2"
+                },
+                {
+                    "label": "genetrees",
+                    "output_name": "genetrees",
+                    "uuid": "4175da79-51fe-46cd-9fdc-cf339e9deda4"
+                },
+                {
+                    "label": "orthologuesstats_many_to_one",
+                    "output_name": "orthologuesstats_many_to_one",
+                    "uuid": "a7a08d98-5241-4950-8a52-be407efb3aab"
+                },
+                {
+                    "label": "species_tree_duplications",
+                    "output_name": "species_tree_duplications",
+                    "uuid": "5501e62a-b8de-402c-95ce-9e03c55048a4"
+                },
+                {
+                    "label": "duplications",
+                    "output_name": "duplications",
+                    "uuid": "13ff73de-6229-412d-98e7-b1206c2e617f"
+                },
+                {
+                    "label": "orthologuesstats_total",
+                    "output_name": "orthologuesstats_total",
+                    "uuid": "586ce47d-0203-460c-8355-e0db8788fda2"
+                },
+                {
+                    "label": "stat_overall",
+                    "output_name": "stat_overall",
+                    "uuid": "62d2e9ed-f898-45c4-ade3-2837ef52f3e3"
+                },
+                {
+                    "label": "specs_overlap",
+                    "output_name": "specs_overlap",
+                    "uuid": "69c3020d-cc8e-41a1-97f7-7006e0303670"
+                },
+                {
+                    "label": "hogs",
+                    "output_name": "hogs",
+                    "uuid": "47732cb2-43a3-4d56-bb60-9d3921906251"
+                },
+                {
+                    "label": "stat_specs",
+                    "output_name": "stat_specs",
+                    "uuid": "65803b8f-2bfc-4033-a0d6-7ab19ee2fad8"
+                },
+                {
+                    "label": "orthologues",
+                    "output_name": "orthologues",
+                    "uuid": "229714af-ae22-4e14-a9f4-b046a9b15695"
+                },
+                {
+                    "label": "species_tree_label",
+                    "output_name": "species_tree_label",
+                    "uuid": "7a8c4333-0046-4656-8f45-d153af975a38"
+                },
+                {
+                    "label": "species_tree",
+                    "output_name": "species_tree",
+                    "uuid": "f489c30d-6eec-41bb-809c-41eb4c77978a"
+                },
+                {
+                    "label": "orthologues_per_species",
+                    "output_name": "orthologues_per_species",
+                    "uuid": "4e8970e6-0996-47ff-82d3-dfbdbbe7c957"
+                },
+                {
+                    "label": "resolved_genetrees",
+                    "output_name": "resolved_genetrees",
+                    "uuid": "fcc0b81e-ba7b-4d48-8af9-1cc0edbd63eb"
+                },
+                {
+                    "label": "orthogroups1",
+                    "output_name": "orthogroups1",
+                    "uuid": "71a7a389-e021-4e7b-a290-12bfcb099616"
+                },
+                {
+                    "label": "orthogroups2",
+                    "output_name": "orthogroups2",
+                    "uuid": "c550d412-b47b-4221-a817-2d2d2722c95c"
+                },
+                {
+                    "label": "unassigned_genes",
+                    "output_name": "unassigned_genes",
+                    "uuid": "0d1091ff-e155-4cff-a621-2dca2f6b2067"
+                },
+                {
+                    "label": "duplications_per_orthogroup",
+                    "output_name": "duplications_per_orthogroup",
+                    "uuid": "39323638-97b5-4b53-8979-fc4eacf7c282"
+                }
+            ]
+        },
+        "12": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/diamond/bg_diamond/2.1.22+galaxy0",
+            "errors": null,
+            "id": 12,
+            "input_connections": {
+                "query": {
+                    "id": 10,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Diamond",
+            "outputs": [
+                {
+                    "name": "blast_tabular",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 1628.4036983241117,
+                "top": 1331.9627058375531
+            },
+            "post_job_actions": {
+                "RenameDatasetActionblast_tabular": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "blast_tabular"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/diamond/bg_diamond/2.1.22+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "a02aa0dfb850",
+                "name": "diamond",
+                "owner": "bgruening",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"advanced_section\": {\"seed_cut\": null, \"freq_masking\": false, \"soft_masking\": \"0\", \"motif_masking\": \"0\", \"swipe\": false, \"iterate\": false, \"algo\": \"0\", \"global_ranking\": null}, \"approx_id\": \"0.0\", \"filter_score\": {\"filter_score_select\": \"evalue\", \"__current_case__\": 0, \"evalue\": \"1e-15\"}, \"gapextend\": null, \"gapopen\": null, \"hit_filter\": {\"hit_filter_select\": \"max\", \"__current_case__\": 0, \"max_target_seqs\": \"1\"}, \"id\": \"30.0\", \"masking\": \"tantan\", \"matrix\": \"BLOSUM62\", \"method_cond\": {\"method_select\": \"blastp\", \"__current_case__\": 1, \"no_self_hits\": true, \"comp_based_stats\": \"1\"}, \"output_section\": {\"output\": {\"outfmt\": \"6\", \"__current_case__\": 2, \"fields\": [\"qseqid\", \"sseqid\", \"evalue\", \"bitscore\", \"pident\"], \"header\": \"simple\"}, \"output_unal\": null, \"log\": false, \"max_hsps\": null}, \"query\": {\"__class__\": \"ConnectedValue\"}, \"query_cover\": \"50.0\", \"ref_db_source\": {\"db_source\": \"blast\", \"__current_case__\": 0, \"reference_database\": \"nr_28-09-2015\", \"ncbi_taxonomy\": \"2024-06-05\"}, \"sens_cond\": {\"sensitivity\": \"--more-sensitive\", \"__current_case__\": 5, \"block_size\": \"2.0\"}, \"subject_cover\": \"0.0\", \"tax_cond\": {\"tax_select\": \"no\", \"__current_case__\": 0}, \"tax_exclude_cond\": {\"tax_select\": \"no\", \"__current_case__\": 0}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "2.1.22+galaxy0",
+            "type": "tool",
+            "uuid": "c3ba4050-86c0-4d0b-baff-c47b0a81cb63",
+            "when": null,
+            "workflow_outputs": [
+                {
+                    "label": "blast_tabular",
+                    "output_name": "blast_tabular",
+                    "uuid": "0cbe898c-51b0-466c-8b9f-36df017386ac"
+                }
+            ]
+        },
+        "13": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/galaxyp/eggnog_mapper/eggnog_mapper/2.1.13+galaxy0",
+            "errors": null,
+            "id": 13,
+            "input_connections": {
+                "ortho_method|input": {
+                    "id": 10,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool eggNOG Mapper",
+                    "name": "ortho_method"
+                }
+            ],
+            "label": null,
+            "name": "eggNOG Mapper",
+            "outputs": [
+                {
+                    "name": "seed_orthologs",
+                    "type": "tabular"
+                },
+                {
+                    "name": "annotations",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 1588.4482282109527,
+                "top": 1531.0301537132557
+            },
+            "post_job_actions": {
+                "RenameDatasetActionannotations": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "annotations"
+                },
+                "RenameDatasetActionseed_orthologs": {
+                    "action_arguments": {
+                        "newname": "#{input_name}"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "seed_orthologs"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/galaxyp/eggnog_mapper/eggnog_mapper/2.1.13+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "02439eb2b37d",
+                "name": "eggnog_mapper",
+                "owner": "galaxyp",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"annotation_options\": {\"no_annot\": \"\", \"__current_case__\": 0, \"seed_ortholog_evalue\": \"0.001\", \"seed_ortholog_score\": null, \"tax_scope\": null, \"target_orthologs\": \"all\", \"go_evidence\": \"non-electronic\"}, \"eggnog_data\": \"5.0.2\", \"ortho_method\": {\"m\": \"diamond\", \"__current_case__\": 0, \"input\": {\"__class__\": \"ConnectedValue\"}, \"input_trans\": {\"itype\": \"proteins\", \"__current_case__\": 0}, \"matrix_gapcosts\": {\"matrix\": \"BLOSUM62\", \"__current_case__\": 2, \"gap_costs\": \"--gapopen 11 --gapextend 1\"}, \"sensmode\": \"sensitive\", \"dmnd_iterate\": false, \"dmnd_ignore_warnings\": false, \"query_cover\": null, \"subject_cover\": null, \"pident\": null, \"evalue\": null, \"score\": \"0.001\"}, \"output_options\": {\"no_file_comments\": true, \"report_orthologs\": false, \"md5\": false}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "2.1.13+galaxy0",
+            "type": "tool",
+            "uuid": "f02da76f-2c63-48eb-805e-90e1f967f114",
+            "when": null,
+            "workflow_outputs": [
+                {
+                    "label": "seed_orthologs",
+                    "output_name": "seed_orthologs",
+                    "uuid": "38c98ab0-5b43-4ff6-8111-2edb7d58b350"
+                },
+                {
+                    "label": "annotations",
+                    "output_name": "annotations",
+                    "uuid": "7cc1cce2-6a86-4d7a-9094-2b2ee13b30b5"
+                }
+            ]
+        }
+    },
+    "tags": [],
+    "uuid": "e713aac3-fbec-46bc-8516-49e5320c3a04",
+    "version": 29
+}
